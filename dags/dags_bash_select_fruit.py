@@ -11,19 +11,19 @@ with DAG(
 ) as dag:
     
     task1_orange = BashOperator(
-        task_id="t1_orange"
+        task_id="t1_orange",
         bash_command="/opt/airflow/plugins/shell/fruit.sh ORANGE"
     )
     task2_grape = BashOperator(
-        task_id="t2_grape"
+        task_id="t2_grape",
         bash_command="/opt/airflow/plugins/shell/fruit.sh GRAPE"
     )
     task3_apple = BashOperator(
-        task_id="t3_apple"
+        task_id="t3_apple",
         bash_command="/opt/airflow/plugins/shell/fruit.sh APPLE"
     )
     task4_jslim = BashOperator(
-        task_id="t4_jslim"
+        task_id="t4_jslim",
         bash_command="/opt/airflow/plugins/shell/fruit.sh JSLIM"
     )
 
