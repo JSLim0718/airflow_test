@@ -6,7 +6,7 @@ import random
 with DAG(
     dag_id="dags_python_operator",
     schedule="10 0 * * *",
-    start_date=pendulum.datetime(2025, 8, 11, tz="Asia/seoul"),
+    start_date=pendulum.datetime(2025, 8, 11, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
     def select_fruit():
