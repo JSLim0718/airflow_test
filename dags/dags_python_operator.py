@@ -5,7 +5,7 @@ import random
 
 with DAG(
     dag_id="dags_python_operator",
-    schedule="2 0 * * *",
+    schedule="5 0 * * *",
     start_date=pendulum.datetime(2025, 8, 12, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
