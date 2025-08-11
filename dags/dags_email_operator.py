@@ -10,10 +10,10 @@ with DAG(
     catchup=False
 ) as dag:
     send_email_task = EmailOperator(
-        task_id="send_email_task", # 여기에 Airflow의 Connection에 등록한 내용 작성
-        conn_id="conn_smtp_gmail",
+        task_id="send_email_task",
+        conn_id="conn_smtp_gmail", # Airflow 커넥션 이름
         to="jptofcor7@gmail.com",
-        subject="Airflow 성공메일",
-        html_content="Airflow의 작업이 완료되었습니다."
+        subject="Airflow 성공메일", # 메일 제목
+        html_content="Airflow의 작업이 완료되었습니다." # 메일 내용
     )
     send_email_task
