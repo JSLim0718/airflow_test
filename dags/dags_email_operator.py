@@ -13,7 +13,7 @@ with DAG(
         task_id="send_email_task", # 여기에 Airflow의 Connection에 등록한 내용 작성
         conn_id="conn_smtp_gmail",
         to="jptofcor7@gmail.com",
-        subbject="Airflow 성공메일",
+        subject="Airflow 성공메일",
         html_content="Airflow의 작업이 완료되었습니다."
     )
     send_email_task
