@@ -5,7 +5,7 @@ from common.common_func import get_sftp
 
 with DAG(
     dag_id="dags_python_import_func",
-    schedule="30 15 * * *",
+    schedule="15 15 * * *",
     start_date=pendulum.datetime(2025, 8, 14, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
