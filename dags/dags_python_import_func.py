@@ -1,0 +1,18 @@
+from airflow import DAG
+import pendulum.datetime
+from airflow.providers.standard.operators.python import PythonOperator
+from plugins.common.common_func import get_sftp
+
+with DAG(
+    dag_id="dags_python_import_func",
+    schedule="30 15 * * *",
+    start_date=pendulum.datetime(2025, 8, 14, tz="Asia/Seoul"),
+    catchup=False
+) as dag:
+    
+    task_get_sftp = PythonOperator(
+        task_id='task_get_sftp',
+        python_callable=get_sftp
+    )
+
+    task_get_sftp
