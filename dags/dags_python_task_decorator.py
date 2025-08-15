@@ -4,7 +4,7 @@ import pendulum.datetime
 
 with DAG(
     dag_id='dags_python_task_decorator',
-    schedule='30 1 * * *',
+    schedule='26 1 * * *',
     start_date=pendulum.datetime(2025, 8, 16, tz='Asia/Seoul'),
     catchup=False
     #tags=['decorator']
