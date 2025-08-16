@@ -32,11 +32,20 @@ with DAG (
         bash_command= 'echo "data_interval_end: {{ ti.xcom_pull(task_ids=\'bash_kst\') }}"'
     )
 
+    # bash_t2 = BashOperator(
+    #     task_id = 'bash_t2',
+    #     env = {
+    #         'START_DATE' : '{{ data_interval_start | ds }}', #YYYYMMDD --> | ds
+    #         'END_DATE' : '{{ data_interval_end | ds }}'
+    #     },
+    #     bash_command = 'echo $START_DATE && echo $END_DATE' #START_DATE 성공하면 END_DATE
+    # )
+
     bash_t2 = BashOperator(
         task_id = 'bash_t2',
         env = {
-            'START_DATE' : '{{ data_interval_start | ds }}', #YYYYMMDD --> | ds
-            'END_DATE' : '{{ data_interval_end | ds }}'
+            'START_DATE' : '{{ ti.xcom_pull(task_ids=\'bash_kst\') }}', #YYYYMMDD --> | ds
+            'END_DATE' : '{{ ti.xcom_pull(task_ids=\'bash_kst\') }}'
         },
         bash_command = 'echo $START_DATE && echo $END_DATE' #START_DATE 성공하면 END_DATE
     )
