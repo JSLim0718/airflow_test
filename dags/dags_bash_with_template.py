@@ -3,7 +3,7 @@ import pendulum.datetime
 import datetime, timedelta
 from airflow.providers.standard.operators.bash import BashOperator
 from airflow.providers.standard.operators.python import PythonOperator
-from airflow.models.taskinstance
+from airflow.sdk.execution_time.xcom import XCom
 
 def parse_date(**context):
     time_tmp = datetime.strptime(str(datetime.utcnow())[:19], '%Y-%m-%d %H:%M:%S')
