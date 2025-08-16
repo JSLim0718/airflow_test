@@ -21,8 +21,7 @@ with DAG (
     
     bash_kst = PythonOperator(
         task_id = 'bash_kst',
-        python_callable = parse_date,
-        op_args = []
+        python_callable = parse_date
     )
 
     # bash_t1 = BashOperator(
@@ -32,7 +31,7 @@ with DAG (
 
     bash_t1 = BashOperator(
         task_id = 'bash_t1',
-        bash_command= 'echo "data_interval_end: {{ task_instance.xcom_pull(key=\'kst\') }}"'
+        bash_command= 'echo "data_interval_end: {{ ti.task_instance.xcom_pull(key=\'kst\') }}"'
     )
 
     bash_t2 = BashOperator(
