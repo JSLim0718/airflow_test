@@ -1,6 +1,16 @@
 from airflow import DAG
 import pendulum.datetime
+import datetime, timedelta
 from airflow.providers.standard.operators.bash import BashOperator
+from airflow.providers.standard.operators.python import PythonOperator
+from airflow.models.taskinstance
+
+def parse_date(**context):
+    time_tmp = datetime.strptime(str(datetime.utcnow())[:19], '%Y-%m-%d %H:%M:%S')
+    kst_date = time_tmp + timedelta(hours=9)
+
+    ti = context['task_instance']
+    ti.xcom_push(key='kst', value=kst_date)
 
 with DAG (
     dag_id="dags_bash_with_template",
@@ -8,9 +18,20 @@ with DAG (
     start_date=pendulum.datetime(2025, 8, 17, tz='Asia/Seoul'),
     catchup=False
 ) as dag:
+    
+    bash_kst = PythonOperator(
+        task_id = 'bash_kst',
+        python_callable = parse_date
+    )
+
+    # bash_t1 = BashOperator(
+    #     task_id = 'bash_t1',
+    #     bash_command= 'echo "data_interval_end: {{ data_interval_end }}"'
+    # )
+
     bash_t1 = BashOperator(
         task_id = 'bash_t1',
-        bash_command= 'echo "data_interval_end: {{ data_interval_end }}"'
+        bash_command= 'echo "data_interval_end: {{ task_instance.xcom_pull(key="kst") }}"'
     )
 
     bash_t2 = BashOperator(
@@ -19,7 +40,7 @@ with DAG (
             'START_DATE' : '{{ data_interval_start | ds }}', #YYYYMMDD --> | ds
             'END_DATE' : '{{ data_interval_end | ds }}'
         },
-        bash_command = 'echo $START_DATE && echo $END_DATE'
+        bash_command = 'echo $START_DATE && echo $END_DATE' #START_DATE 성공하면 END_DATE
     )
 
-    bash_t1 >> bash_t2
+    bash_kst >> bash_t1 >> bash_t2
