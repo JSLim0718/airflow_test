@@ -8,9 +8,7 @@ from airflow.sdk.execution_time.xcom import XCom
 def parse_date(**context):
     time_tmp = datetime.strptime(str(datetime.utcnow())[:19], '%Y-%m-%d %H:%M:%S')
     kst_date = time_tmp + timedelta(hours=9)
-
-    ti = context['task_instance']
-    ti.xcom_push(key='kst', value=kst_date)
+    return str(kst_date)
 
 with DAG (
     dag_id="dags_bash_with_template",
@@ -31,7 +29,7 @@ with DAG (
 
     bash_t1 = BashOperator(
         task_id = 'bash_t1',
-        bash_command= 'echo "data_interval_end: {{ ti.xcom_pull(key=\'kst\') }}"'
+        bash_command= 'echo "data_interval_end: {{ ti.xcom_pull(task_ids=\'bash_kst\') }}"'
     )
 
     bash_t2 = BashOperator(
