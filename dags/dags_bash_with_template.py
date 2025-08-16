@@ -22,7 +22,7 @@ with DAG (
     bash_kst = PythonOperator(
         task_id = 'bash_kst',
         python_callable = parse_date,
-        op_args = ''
+        op_args = []
     )
 
     # bash_t1 = BashOperator(
