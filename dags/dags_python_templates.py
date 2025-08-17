@@ -7,7 +7,7 @@ from airflow.decorators import task
 with DAG (
     dag_id='dags_python_templates',
     schedule='45 22 * * *',
-    start_date=pendulum.datetime(2025, 8, 17, tz='Asis/Seoul'),
+    start_date=pendulum.datetime(2025, 8, 17, tz='Asia/Seoul'),
     catchup=False
 ) as dag:
     
