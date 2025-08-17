@@ -3,7 +3,7 @@ import pendulum
 from airflow.providers.standard.operators.bash import BashOperator
 
 with DAG(
-    dag_id='dags_bash_with_macro_eg1',
+    dag_id='dags_bash_with_macro_eg2',
     schedule='10 0 * * 6#2', # 토요일에 2주마다 스케줄
     start_date=pendulum.datetime(2025, 8, 18, tz='Asia/Seoul'),
     catchup=False
