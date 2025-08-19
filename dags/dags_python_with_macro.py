@@ -31,7 +31,7 @@ with DAG(
 
         data_interval_end = kwargs['data_interval_end']
         prev_month_day_first = (data_interval_end.in_timezone('Asia/Seoul') + relativedelta(months=-1, day=1)).strftime('%Y-%m-%d')
-        prev_month_day_last = (data_interval_end.in_timezone('Asia/Seoul').replace(day=1)).strftime('%Y-%m-%d')
+        prev_month_day_last = (data_interval_end.in_timezone('Asia/Seoul').replace(day=1) + relativedelta(days=-1)).strftime('%Y-%m-%d')
         print(prev_month_day_first)
         print(prev_month_day_last)
 
