@@ -29,8 +29,8 @@ with DAG(
 
     bash_push = BashOperator(
         task_id = 'bash_push',
-        bash_command = 'echo PUSH_START ; \'
-                       '{{ti.xcom_push(key="bash_pushed", value=200)}} && \'
+        bash_command = 'echo PUSH_START '
+                       '{{ti.xcom_push(key="bash_pushed", value=200)}} && '
                        'echo PUSH_COMPLETE'
     )
 
