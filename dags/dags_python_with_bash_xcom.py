@@ -34,7 +34,7 @@ with DAG(
                        'echo PUSH_COMPLETE'
     )
 
-    @task(task_id=python_pull)
+    @task(task_id='python_pull')
     def python_pull_xcom(**kwargs):
         ti = kwargs['ti']
         status_value = ti.xcom_pull(key='bash_pushed') # 200
