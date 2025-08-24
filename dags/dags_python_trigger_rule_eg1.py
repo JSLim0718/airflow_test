@@ -3,7 +3,7 @@ import pendulum
 import datetime
 from airflow.decorators import task
 from airflow.providers.standard.operators.python import PythonOperator
-from airflow.providers.standard.operators.bash import BaseOperator
+from airflow.providers.standard.operators.bash import BashOperator
 from airflow.exceptions import AirflowException
 
 with DAG(
@@ -13,7 +13,7 @@ with DAG(
     catchup=False
 ) as dag:
     
-    bash_upstream_1 = BaseOperator(
+    bash_upstream_1 = BashOperator(
         task_id = 'bash_upstream_1',
         bash_command = 'echo upstream1'
     )
