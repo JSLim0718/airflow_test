@@ -18,6 +18,7 @@ with DAG(
         import random
         item_list = ['A', 'B', 'C']
         selected_item = random.choice(item_list)
+        #return task_? >> def task_? 실행
         if selected_item == 'A':
             return 'task_a'
         elif selected_item == 'B':
