@@ -7,7 +7,7 @@ from airflow.providers.standard.operators.bash import BashOperator
 from airflow.exceptions import AirflowException
 
 with DAG(
-    dag_id='dags_python_trigger_rule_eg1',
+    dag_id='dags_python_trigger_rule_eg2',
     schedule=None,
     start_date=pendulum.datetime(2025, 8, 24, tz='Asia/Seoul'),
     catchup=False
@@ -42,4 +42,4 @@ with DAG(
     def task_d():
         print('정상 처리')
 
-    random_branch() >> [task_a, task_b(), task_c()] >> task_d() #
+    random_branch() >> [task_a, task_b(), task_c()] >> task_d()
