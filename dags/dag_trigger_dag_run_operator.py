@@ -20,7 +20,10 @@ with DAG(
         task_id =  'trigger_dag_task', # 필수값
         trigger_dag_id = 'dags_python_operator', # 필수값
         trigger_run_id = None,
-        execution_date = '{{data_interval_end}}',
+        #execution_date = '{{data_interval_end}}',
+        conf = {
+                "run_date": "{{ data_interval_end }}"
+            },
         reset_dag_run = True,
         wait_for_completion = False,
         poke_interval = 60,
