@@ -24,9 +24,9 @@ with DAG(
 
     @task(task_id = 'python_upstream_2')
     def python_upstream_2():
-        prin('정상 처리')
+        print('정상 처리')
     
-    @task(task_id = 'python_downstream_1', trigger_rule = 'all_done')
+    @task(task_id = 'python_downstream_1', trigger_rule = 'all_done') #상위 작업 성공여부 상관 없이 하위 작업 실행
     def python_downstream_1():
         print('정상 처리')
 
