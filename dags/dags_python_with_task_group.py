@@ -19,7 +19,7 @@ with DAG(
 
     @task_group(group_id = 'first_group')
     def group_1():
-        '''task_group 데코레이터를 이용한 첫 번째 그룹입니다.'''
+        '''task_group 데코레이터를 이용한 첫 번째 그룹입니다.''' # 클래스를 이용한 taskGroup의 tooltip과 같은 기능
 
         @task(task_id = 'inner_function1')
         def inner_finc1(**kwargs):
@@ -34,7 +34,7 @@ with DAG(
         inner_func1() >> inner_function2
     
     with taskGroup(group_id = 'second_group', tooltip = '두 번째 그룹입니다.') as group_2:
-        '''여기에 적은 docstring은 표시되지 않습니다.'''
+        '''여기에 적은 docstring은 표시되지 않습니다.''' # 이 docstring은 표시되지 않고 tooltip 파라미터로 전달한 항목이 표시
         @task(task_id = 'inner_function1')
         def inner_func1(**kwargs):
             print('두 번째 taskGroup 내 첫 번째 task입니다.')
