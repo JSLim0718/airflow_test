@@ -14,7 +14,7 @@ with DAG(
 ) as dag:
     
     def inner_func(**kwargs):
-        msg = kwargs.get('msg')' or ''
+        msg = kwargs.get('msg') or ''
         print(msg)
 
     @task_group(group_id = 'first_group')
