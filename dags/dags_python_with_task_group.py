@@ -46,4 +46,4 @@ with DAG(
         )
         inner_func1() >> inner_function2
 
-    first_group >> group_2
+    group_1() >> group_2
