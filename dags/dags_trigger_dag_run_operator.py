@@ -5,8 +5,8 @@ from airflow.providers.standard.operators.bash import BashOperator
 from airflow.providers.standard.operators.trigger_dagrun import TriggerDagRunOperator
 
 with DAG(
-    dag_id='dags_empty_with_edge_label',
-    schedule='40 12 * * *',
+    dag_id='dags_trigger_dag_run_operator',
+    schedule='50 12 * * *',
     start_date=pendulum.datetime(2025, 8, 25, tz='Asia/Seoul'),
     catchup=False
 ) as dag:
