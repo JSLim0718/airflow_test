@@ -39,7 +39,7 @@ with DAG(
     def task_c():
         print('정상 처리')
     
-    @task(task_id = 'task_d', trigger_rule = 'none_skipped')
+    @task(task_id = 'task_d', trigger_rule = 'none_skipped') # 모든 task가 정상적으로 돌아야 하위 스트림 실행
     def task_d():
         print('정상 처리')
 
