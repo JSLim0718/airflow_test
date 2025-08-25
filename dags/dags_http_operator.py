@@ -2,6 +2,7 @@ from airflow import DAG
 import pendulum
 import datetime
 from airflow.providers.http.operators.http import HttpOperator
+from airflow.decorators import task
 
 with DAG(
     dag_id='dags_http_operator',
