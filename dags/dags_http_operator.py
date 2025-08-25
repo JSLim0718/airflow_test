@@ -4,9 +4,9 @@ import datetime
 from airflow.providers.http.operators.http import HttpOperator
 
 with DAG(
-    dag_id='dags_trigger_dag_run_operator',
-    schedule='50 12 * * *',
-    start_date=pendulum.datetime(2025, 8, 25, tz='Asia/Seoul'),
+    dag_id='dags_http_operator',
+    schedule=None,
+    start_date=pendulum.datetime(2025, 8, 26, tz='Asia/Seoul'),
     catchup=False
 ) as dag:
     
@@ -20,3 +20,14 @@ with DAG(
                    'Accept':'*/*'
         }
     )
+
+    @task(task_id = 'python_2')
+    def python_2(**kwargs):
+        ti = kwargs['ti']
+        result = ti.xcom_pull(task_id = 'tb_cycle_station_info')
+        import json
+        from pprint import pprint
+
+        pprint(json.loads(result))
+    
+    tb_cycle_station_info >> python_2()
