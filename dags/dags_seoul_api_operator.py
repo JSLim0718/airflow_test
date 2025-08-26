@@ -13,7 +13,7 @@ with DAG(
     tb_cycle_count_status = SeoulApiToCsvOperator(
         task_id = 'tb_cycle_count_status',
         dataset_nm = 'tbCycleStationInfo',
-        path = f'/opt/airflow/files/{dataset_nm}/' + '{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}',
+        path = '/opt/airflow/files/tbCycleStationInfo/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}',
         file_name = 'tbCycleStationInfo.csv'
     )
 
@@ -21,7 +21,7 @@ with DAG(
     tb_cycle_conv_status = SeoulApiToCsvOperator(
         task_id = 'tb_cycle_conv_status',
         dataset_nm = 'tvBicycleEtc',
-        path = f'/opt/airflow/files/{dataset_nm}/' + '{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}',
+        path = '/opt/airflow/files/tvBicycleEtc/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}',
         file_name = 'tvBicycleEtc.csv'
     )
 
