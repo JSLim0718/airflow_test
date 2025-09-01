@@ -1,7 +1,7 @@
 from airflow import DAG
 import pendulum
 from airflow.providers.standard.operators.python import PythonOperator
-from airflow.providers.postgres.hooks.postgres import Postgreshook
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 with DAG(
     dag_id = 'dags_python_with_postgres_hook_bulk_load',
@@ -11,7 +11,7 @@ with DAG(
 ) as dag:
     
     def insert_postgres(postgres_conn_id, tbl_nm, file_nm, **kwargs):
-        postgres_hook = Postgreshook(postgres_conn_id)
+        postgres_hook = PostgresHook(postgres_conn_id)
         postgres_hook.bulk_load(tbl_nm, file_nm)
 
     insert_postgres = PythonOperator(
