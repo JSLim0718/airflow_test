@@ -4,7 +4,7 @@ import pendulum
 import datetime
 with DAG(
     dag_id='dags_seoul_api_operator',
-    schedule=None,
+    schedule='50 6 * * *',
     start_date=pendulum.datetime(2025, 8, 26, tz='Asia/Seoul'),
     catchup=False
 ) as dag:
