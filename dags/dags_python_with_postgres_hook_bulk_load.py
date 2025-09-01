@@ -20,6 +20,6 @@ with DAG(
         op_kwargs = {
             'postgres_conn_id':'conn-db-postgres-custom',
             'tbl_nm':'tbCycleStationInfo_bulk1',
-            'file_nm':'/home/jslim/airflow/files/tbCycleStationInfo/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}/tbCycleStationInfo.csv'
+            'file_nm':'/opt/airflow/files/tbCycleStationInfo/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}/tbCycleStationInfo.csv'
         }
     )
