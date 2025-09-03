@@ -24,4 +24,4 @@ with DAG(
         }
     )
 
-    insert_postgres()
+    insert_postgres
