@@ -38,7 +38,9 @@ class CustomPostgreshook(BaseHook):
 
         self.log.info('적재 건수:' + str(len(file_df)))
         uri = f'postgresql://{self.user}:{self.password}@{self.host}/{self.dbname}'
-        engine = create_engine(uri)
+        engine = create_engine(uri).connect()
+
+
         file_df.to_sql(name = table_name,
                        con = engine,
                        schema = 'public',
