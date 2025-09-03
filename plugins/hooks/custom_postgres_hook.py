@@ -42,7 +42,7 @@ class CustomPostgreshook(BaseHook):
 
 
         file_df.to_sql(name = table_name,
-                       con = engine,
+                       conn = engine,
                        schema = 'public',
                        if_exists = if_exists, # 데이터를 교체할지, 증분할지를 True/False(replace, append)로 선택
                        index = False
