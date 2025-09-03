@@ -38,12 +38,12 @@ class CustomPostgreshook(BaseHook):
 
         self.log.info('적재 건수:' + str(len(file_df)))
         uri = f'postgresql://{self.user}:{self.password}@{self.host}/{self.dbname}'
-        engine = create_engine(uri).connect()
+        engine = create_engine(uri)
 
-
-        file_df.to_sql(name = table_name,
-                       conn = engine,
-                       schema = 'public',
-                       if_exists = if_exists, # 데이터를 교체할지, 증분할지를 True/False(replace, append)로 선택
-                       index = False
-                       )
+        with engine.connect() as connection:
+            file_df.to_sql(name = table_name,
+                        con = connection,
+                        schema = 'public',
+                        if_exists = if_exists, # 데이터를 교체할지, 증분할지를 True/False(replace, append)로 선택
+                        index = False
+                        )
