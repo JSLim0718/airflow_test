@@ -37,7 +37,7 @@ class CustomPostgreshook(BaseHook):
                 continue
 
         self.log.info('적재 건수:' + str(len(file_df)))
-        uri = f'postgres://{self.user}:{self.password}@{self.host}/{self.dbname}'
+        uri = f'postgresql://{self.user}:{self.password}@{self.host}/{self.dbname}'
         engine = create_engine(uri).raw_connection() # 판다스 2.2이상이고, sqlalchemy 1.4 이하일 때 raw_connection() 추가
 
         # sqlalchemy의 버전이 2.0 이상이어야 pandas 2.2 이상과 호환이 가능
