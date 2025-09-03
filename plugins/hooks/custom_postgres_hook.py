@@ -40,10 +40,10 @@ class CustomPostgreshook(BaseHook):
         uri = f'postgresql://{self.user}:{self.password}@{self.host}/{self.dbname}'
         engine = create_engine(uri)
 
-        with engine.connect() as connection:
-            file_df.to_sql(name = table_name,
-                        con = connection,
-                        schema = 'public',
-                        if_exists = if_exists, # 데이터를 교체할지, 증분할지를 True/False(replace, append)로 선택
-                        index = False
-                        )
+        # sqlalchemy의 버전이 2.0 이상이어야 pandas 2.2 이상과 호환이 가능
+        file_df.to_sql(name = table_name,
+                       con = engine,
+                       schema = 'public',
+                       if_exists = if_exists, # 데이터를 교체할지, 증분할지를 True/False(replace, append)로 선택
+                       index = False
+                       )
