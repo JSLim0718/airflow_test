@@ -46,7 +46,7 @@ with DAG(
         task_id='bash_task',
         #env={'FILE':'/opt/airflow/files/tvCorona19VaccinestatNew/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash }}/tvCorona19VaccinestatNew.csv'},
         env={'FILE':'/opt/airflow/files/tbCycleStationInfo/20250913/tbCycleStationInfo.csv'},
-        bash_command='echo "건수: `cat $FILE | wc -l`"',
+        bash_command='echo "건수: `cat $FILE | wc -l`"', # wc -l : 해당 파일의 라인 수
     )
 
     [sensor_task_by_poke,sensor_task_by_reschedule] >> bash_task
