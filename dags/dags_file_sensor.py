@@ -12,7 +12,7 @@ with DAG(
         task_id = 'tbCycleStationInfo_sensor',
         fs_conn_id = 'conn_file_opt_airflow_files',
         #filepath = 'tbCycleStationInfo/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}/tbCycleStationInfo.csv',
-        filepath = 'tbCycleStationInfo/20250913/tbCycleStationInfo.csv',
+        filepath = 'tbCycleStationInfo/20250913/tbCycleStationInf.csv',
         recursive = False,
         poke_interval = 60,
         timeout = 60*60*24, #1일, 24시간
