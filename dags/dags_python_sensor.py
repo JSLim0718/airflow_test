@@ -38,15 +38,15 @@ with DAG(
             print(f'update 미완료 (배치 날짜 : {today_ymd}) / API last 날짜 : {last_date}')
             return False # Reschedule
         
-        sensor_task = PythonSensor(
-            task_id = 'sensor_task',
-            python_callable = check_api_update,
-            op_kwargs = {'http_conn_id':'openapi.soeul.go.kr',
-                         'endpoint':'{{var.value.apikey_openapi_seoul_go_kr}}/json/bikeListHist',
-                         'base_dt_col':'stationDt'
-            },
-            poke_interval = 600, # 10분
-            mode = 'reschedule'
-        )
+    sensor_task = PythonSensor(
+        task_id = 'sensor_task',
+        python_callable = check_api_update,
+        op_kwargs = {'http_conn_id':'openapi.soeul.go.kr',
+                        'endpoint':'{{var.value.apikey_openapi_seoul_go_kr}}/json/bikeListHist',
+                        'base_dt_col':'stationDt'
+        },
+        poke_interval = 600, # 10분
+        mode = 'reschedule'
+    )
 
-        sensor_task
+    sensor_task
