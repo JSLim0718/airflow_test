@@ -48,3 +48,5 @@ with DAG(
             poke_interval = 600, # 10분
             mode = 'reschedule'
         )
+
+        sensor_task
