@@ -7,7 +7,7 @@ from airflow.utils.state import State
 with DAG(
     dag_id = 'dags_external_task_sensor',
     schedule = '0 7 * * *',
-    start_date = pendulum.datetime(2025, 9, 16, tz = 'Asia/Seoul'),
+    start_date = pendulum.datetime(2025, 9, 15, tz = 'Asia/Seoul'),
     catchup = False
 ) as dag:
     external_task_sensor_a = ExternalTaskSensor(
