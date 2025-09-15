@@ -32,7 +32,7 @@ with DAG(
         task_id = 'external_task_sensor_C',
         external_dag_id = 'dags_branch_python_operator',
         external_task_id = 'task_C',
-        failed_states = [State.SUCCESS],
+        allowed_states = [State.SUCCESS],
         execution_delta = timedelta(hours = 6),
         poke_interval = 10 # 10초
     )
