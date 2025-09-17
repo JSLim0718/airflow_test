@@ -1,5 +1,6 @@
 from airflow.sensors.base import BaseSensorOperator
 from airflow.hooks.base import BaseHook
+from datetime import datetime
 
 '''
 서울시 공공데이터 API 추출 시 특정 날짜 컬럼을 조사하여
@@ -19,7 +20,7 @@ class SeoulApiDateSensor(BaseSensorOperator): #SeoulApiDataSensor 클래스 선�
         '''
         super().__init__(**kwargs)
         self.http_conn_id = 'openapi.seoul.go.kr'
-        self.endpoint = '{{var.value.apikey_openapi_seoul_go_kr}}/json/' + dataset_nm + '/1/100' # 100건 추출
+        self.endpoint = '{{var.value.apikey_openapi_seoul_go_kr}}/json/' + dataset_nm + '/1/100/' + str(datetime.today()).replace('-', '')[:8] + '01' # 100건 추출
         self.base_dt_col = base_dt_col
         self.day_off = day_off
 
