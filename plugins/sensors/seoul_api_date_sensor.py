@@ -37,7 +37,7 @@ class SeoulApiDateSensor(BaseSensorOperator): #SeoulApiDataSensor 클래스 선�
         key_nm = list(contents.keys())[0]
         row_data = contents.get(key_nm).get('row')
         last_dt = row_data[0].get(self.base_dt_col)
-        last_date = last_dt[:8].replace('.', '-').replace('/', '-')
+        last_date = last_dt[:4] + '-' + last_dt[4:6] + '-' + last_dt[6:8]
         search_ymd = (contenxt.get('data_interval_end').in_timezone('Asia/Seoul') + relativedelta(days = self.day_off)).strftime('%Y=%m-%d')
 
         try:
