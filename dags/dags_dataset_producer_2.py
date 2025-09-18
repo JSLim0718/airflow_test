@@ -14,5 +14,5 @@ with DAG(
     bash_task = BashOperator(
         task_id = 'bash_task',
         outlets = [dataset_dags_dataset_producer_2],
-        bash_command = 'echo "producer_2 수행 완료'
+        bash_command = 'echo "producer_2 수행 완료"'
     )
