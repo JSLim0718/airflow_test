@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.providers.standard.operators.bash import BashOperator
 import pendulum
 
-dataset_dags_dataset_producer_2 = Dataset('dags_dataset_producer_1')
+dataset_dags_dataset_producer_2 = Dataset('dags_dataset_producer_2')
 
 with DAG(
     dag_id = 'dags_dataset_producer_2',

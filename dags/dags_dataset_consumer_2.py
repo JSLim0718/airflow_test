@@ -14,6 +14,5 @@ with DAG(
 ) as dag:
     bash_task = BashOperator(
         task_id = 'bash_task',
-        outlets = [dataset_dags_dataset_producer_2],
         bash_command = 'echo {{ti.run_id}} && echo "producer_1과 producer_2가 완료되면 수행'
     )
