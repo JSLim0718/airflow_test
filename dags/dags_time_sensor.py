@@ -4,10 +4,10 @@ from airflow.providers.standard.sensors.date_time import DateTimeSensor
 
 with DAG(
     dag_id = 'dags_time_sensor',
-    start_date = pendulum.datetime(2025, 9, 24, 0, 0, 0),
-    end_date = pendulum.datetime(2025, 9, 24, 1, 0, 0), # 0시부터 1시
+    start_date = pendulum.datetime(2025, 9, 23, 0, 0, 0),
+    end_date = pendulum.datetime(2025, 9, 23, 1, 0, 0), # 0시부터 1시
     schedule = '*/10 * * * *', # 10분마다
-    catchup = False
+    catchup = True # catchup True : Backfill에 해당하는 내용 그대로 실행
 ) as dag:
     sync_sensor = DateTimeSensor(
         task_id = 'sync_sensor',
